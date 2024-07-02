@@ -35,22 +35,21 @@ class EquipoController extends Controller
             'contrasena' => 'required|string|max:30',
             'fecha_fundacion' => 'nullable|date',
             'direccion' => 'nullable|string',
-            'puntos' => 'required|integer|min:0',
-            'partidos_jugados' => 'required|integer|min:0',
         ]);
+    
         $equipo = new equipos();
         $equipo->nombre_usuario = $validatedData['nombre_usuario'];
         $equipo->nombre = $validatedData['nombre'];
         $equipo->mail = $validatedData['mail'];
-        $equipo->contrasena = bcrypt($validatedData['contrasena']); // Encriptando la contraseña
+        $equipo->contrasena = bcrypt($validatedData['contrasena']); 
         $equipo->fecha_fundacion = $validatedData['fecha_fundacion'];
         $equipo->direccion = $validatedData['direccion'];
-        $equipo->puntos = $validatedData['puntos'];
-        $equipo->partidos_jugados = $validatedData['partidos_jugados'];
-    
-        // Guardar el nuevo equipo en la base de datos
+        $equipo->puntos = 0; 
+        $equipo->partidos_jugados = 0; 
+
+
         $equipo->save();
-       
+    
         return redirect('home');
     }
 

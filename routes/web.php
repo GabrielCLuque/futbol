@@ -8,6 +8,6 @@ Route::get('/', function () {
 
 //formulario para crear equipo
 
-Route::get('/futbol/equipocreate', [EquipoController::class, 'create']);
+Route::get('/equipo/equipo_create', [EquipoController::class, 'create']);
 
-Route::post('/futbol', [EquipoController::class, 'store']);
+Route::post('/equipo', [EquipoController::class, 'store']);
