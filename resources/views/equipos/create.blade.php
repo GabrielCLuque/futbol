@@ -10,7 +10,7 @@
 <body>
     <div class="container" >
         
-        <form action="{{ route('equipos.store') }}" method="POST">
+        <form action="/equipo" method="POST">
             @csrf
            <div class=" grid grid-cols-1 gap-4 place-items-center">
                   <div class="form-group ">

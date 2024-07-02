@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\equipos;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class EquipoController extends Controller
 {
     /**
@@ -20,7 +20,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('equipos.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class EquipoController extends Controller
 
         $equipo->save();
     
-        return redirect('home');
+        return view('home');
     }
 
     /**

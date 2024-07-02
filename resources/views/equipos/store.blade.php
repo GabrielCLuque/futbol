@@ -8,10 +8,6 @@
 </head>
 
 <body>
- <a href="/equipos/create" > 
-    Crea tu equipo
- </a>
-
- 
+  
 </body>
 </html>

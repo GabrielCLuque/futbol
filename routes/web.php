@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EquipoController;
 
 Route::get('/', function () {
     return view('home');
@@ -8,6 +9,6 @@ Route::get('/', function () {
 
 //formulario para crear equipo
 
-Route::get('/equipo/equipo_create', [EquipoController::class, 'create']);
+Route::get('/equipos/create', [EquipoController::class, 'create']);
 
 Route::post('/equipo', [EquipoController::class, 'store']);
