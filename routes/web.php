@@ -14,3 +14,4 @@ Route::get('/equipos/create', [EquipoController::class, 'create']);
 Route::post('/equipo', [EquipoController::class, 'store']);
 
 Route::get('/equipos/index', [EquipoController::class, 'index']);
+

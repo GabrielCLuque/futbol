@@ -12,7 +12,12 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        return view('equipos.index');
+       
+        $nombre = equipos::pluck('nombre');
+        $puntos = equipos::pluck('puntos');
+        $partidos_jugados = equipos::pluck('partidos_jugados');
+
+        return view('equipos.index',['nombre' => $nombre, 'puntos' => $puntos, 'partidos_jugados' => $partidos_jugados]);
     }
 
     /**

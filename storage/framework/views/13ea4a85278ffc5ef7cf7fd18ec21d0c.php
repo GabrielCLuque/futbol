@@ -17,13 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 0; $i < count($nombre); $i++)
+                <?php for($i = 0; $i < count($nombre); $i++): ?>
                     <tr>
-                        <td class="border px-4 py-2">{{ $nombre[$i] }}</td>
-                        <td class="border px-4 py-2">{{ $puntos[$i] }}</td>
-                        <td class="border px-4 py-2">{{ $partidos_jugados[$i] }}</td>
+                        <td class="border px-4 py-2"><?php echo e($nombre[$i]); ?></td>
+                        <td class="border px-4 py-2"><?php echo e($puntos[$i]); ?></td>
+                        <td class="border px-4 py-2"><?php echo e($partidos_jugados[$i]); ?></td>
                     </tr>
-                @endfor
+                <?php endfor; ?>
             </tbody>
         </table>
     </div>
@@ -75,4 +75,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\laravel\futbol\resources\views/equipos/index.blade.php ENDPATH**/ ?>
