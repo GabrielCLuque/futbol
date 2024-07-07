@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\PartidoController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', function () {
@@ -46,6 +47,10 @@ Route::delete('/equipos/destroy-target/{id}', [EquipoController::class, 'destroy
      ->middleware('auth');
 
 
-     Route::get('/partidos/create', [PartidoController::class, 'create'])->middleware('auth')->name('partidos.create');
+Route::get('/partidos/create', [PartidoController::class, 'create'])->middleware('auth')->name('partidos.create');
      
-     Route::post('/partidos', [PartidoController::class, 'store'])->middleware('auth')->name('partidos.store');
+Route::post('/partidos', [PartidoController::class, 'store'])->middleware('auth')->name('partidos.store');
+
+Route::get('/partidos/index', [PartidoController::class, 'show'])->name('partidos.index');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');

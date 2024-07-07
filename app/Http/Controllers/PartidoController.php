@@ -37,4 +37,14 @@ class PartidoController extends Controller
 
         return redirect('/')->with('success', 'Partido creado con éxito');
     }
+    public function show()
+    {
+        
+        $partidos = Partido::where('jugado', 0)
+                           ->orderBy('fecha', 'asc')  
+                           ->get();
+
+        return view('partidos.index', ['partidos' => $partidos]);
+    }
+    
 }
