@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                <?php for($i = 0; $i < count($nombre); $i++): ?>
+                <?php for($i = 0; $i < count($nombre_equipo); $i++): ?>
                     <tr>
-                        <td class="border px-4 py-2"><?php echo e($nombre[$i]); ?></td>
+                        <td class="border px-4 py-2"><?php echo e($nombre_equipo[$i]); ?></td>
                         <td class="border px-4 py-2"><?php echo e($puntos[$i]); ?></td>
                         <td class="border px-4 py-2"><?php echo e($partidos_jugados[$i]); ?></td>
                     </tr>

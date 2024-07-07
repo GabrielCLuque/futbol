@@ -17,9 +17,9 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 0; $i < count($nombre); $i++)
+                @for ($i = 0; $i < count($nombre_equipo); $i++)
                     <tr>
-                        <td class="border px-4 py-2">{{ $nombre[$i] }}</td>
+                        <td class="border px-4 py-2">{{ $nombre_equipo[$i] }}</td>
                         <td class="border px-4 py-2">{{ $puntos[$i] }}</td>
                         <td class="border px-4 py-2">{{ $partidos_jugados[$i] }}</td>
                     </tr>

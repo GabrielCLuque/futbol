@@ -14,20 +14,20 @@
             <?php echo csrf_field(); ?>
            <div class=" grid grid-cols-1 gap-4 place-items-center">
                   <div class="form-group ">
-                     <label for="nombre_usuario" class="block mb-2 text-lg font-semibold text-center" >Nombre de Usuario</label>
-                     <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control w-full p-2 border rounded" required>
+                     <label for="nombre_equipo" class="block mb-2 text-lg font-semibold text-center" >Nombre de Usuario</label>
+                     <input type="text" name="nombre_equipo" id="nombre_equipo" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
-                     <label for="nombre" class="block mb-2 text-lg font-semibold text-center">Nombre del club</label>
-                     <input type="text" name="nombre" id="nombre" class="form-control w-full p-2 border rounded" required>
+                     <label for="name" class="block mb-2 text-lg font-semibold text-center">Nombre del club</label>
+                     <input type="text" name="name" id="name" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
-                     <label for="mail" class="block mb-2 text-lg font-semibold text-center">Email</label>
-                     <input type="email" name="mail" id="mail" class="form-control w-full p-2 border rounded" required>
+                     <label for="email" class="block mb-2 text-lg font-semibold text-center">Email</label>
+                     <input type="email" name="email" id="email" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
-                     <label for="contrasena" class="block mb-2 text-lg font-semibold text-center">Contraseña</label>
-                     <input type="password" name="contrasena" id="contrasena" class="form-control w-full p-2 border rounded" required>
+                     <label for="password" class="block mb-2 text-lg font-semibold text-center">Contraseña</label>
+                     <input type="password" name="password" id="password" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
                      <label for="fecha_fundacion" class="block mb-2 text-lg font-semibold text-center">Fecha de Fundación</label>
