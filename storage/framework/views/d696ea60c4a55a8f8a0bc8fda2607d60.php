@@ -11,7 +11,7 @@
         <h1 class="text-2xl font-bold mb-6">Editar Perfil del Equipo</h1>
         <form action="<?php echo e(route('dashboard.update', $user->id)); ?>" method="POST">
             <?php echo csrf_field(); ?>
-            <?php echo method_field('PUT'); ?>  <!-- Usar PUT como método de solicitud para la actualización -->
+            <?php echo method_field('PUT'); ?> 
 
             <div class="mb-4">
                 <label for="nombre_equipo" class="block text-sm font-medium text-gray-700">Nombre del Equipo:</label>
@@ -40,6 +40,15 @@
             
             <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 Guardar Cambios
+            </button>
+        </form>
+
+        <form action="<?php echo e(route('dashboard.destroy', $user->id)); ?>" method="POST" class="mt-4">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('DELETE'); ?>
+
+            <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar tu perfil? Esta acción no se puede deshacer.')" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Eliminar Perfil
             </button>
         </form>
     </div>

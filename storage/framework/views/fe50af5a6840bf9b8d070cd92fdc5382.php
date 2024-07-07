@@ -75,6 +75,7 @@
             </a>
          </li>
          <li>
+            
             <form action="<?php echo e(route('logout')); ?>" method="POST" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <?php echo csrf_field(); ?>
                <button type="submit" class="flex items-center w-full text-left">

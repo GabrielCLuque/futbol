@@ -13,14 +13,12 @@ class EquipoController extends Controller
      */
     public function index()
     {
-       
-        $nombre_equipo = User::pluck('nombre_equipo');
-        $puntos = User::pluck('puntos');
-        $partidos_jugados = User::pluck('partidos_jugados');
+        $users = User::where('admin_status', '!=', 1)->get(['id', 'nombre_equipo', 'puntos', 'partidos_jugados']);
 
-        return view('equipos.index',['nombre_equipo' => $nombre_equipo, 'puntos' => $puntos, 'partidos_jugados' => $partidos_jugados]);
+        return view('equipos.index', [
+            'users' => $users
+        ]);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -108,8 +106,25 @@ class EquipoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+   public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user) {
+            $user->delete();
+            Auth::logout();
+            return redirect('/')->with('success', 'Perfil eliminado correctamente.');
+        }
+
+        return redirect('/dashboard')->with('error', 'No se pudo eliminar el perfil.');
+    }
+    public function destroyTarget($id)
+    {
+        if (Auth::user()->admin_status == 1) {
+            $user = User::findOrFail($id); // Asegúrate de que el usuario existe
+            $user->delete(); // Elimina el usuario
+            return redirect('/equipos/index')->with('success', 'Usuario eliminado correctamente.');
+        }
+        return redirect('/equipos/index')->with('error', 'No tiene permisos para realizar esta acción.');
     }
 }

@@ -36,3 +36,10 @@ Route::get('/dashboard/edit', [EquipoController::class, 'edit'])->name('dashboar
 
 
 Route::put('/dashboard/update/{id}', [EquipoController::class, 'update'])->name('dashboard.update');
+
+
+Route::delete('/dashboard/destroy/{id}', [EquipoController::class, 'destroy'])->name('dashboard.destroy');
+
+Route::delete('/equipos/destroy-target/{id}', [EquipoController::class, 'destroyTarget'])
+     ->name('equipos.destroy-target')
+     ->middleware('auth');

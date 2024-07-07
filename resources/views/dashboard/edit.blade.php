@@ -42,6 +42,15 @@
                 Guardar Cambios
             </button>
         </form>
+
+        <form action="{{ route('dashboard.destroy', $user->id) }}" method="POST" class="mt-4">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar tu perfil? Esta acción no se puede deshacer.')" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Eliminar Perfil
+            </button>
+        </form>
     </div>
 </body>
 </html>
