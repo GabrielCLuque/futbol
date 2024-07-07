@@ -31,3 +31,8 @@ Route::middleware('auth:web')->get('/dashboard', function () {
 Route::middleware('auth:web')->get('/dashboard/update', function () {
     return view('/dashboard/update');
 });
+
+Route::get('/dashboard/edit', [EquipoController::class, 'edit'])->name('dashboard.edit');
+
+
+Route::put('/dashboard/update/{id}', [EquipoController::class, 'update'])->name('dashboard.update');
