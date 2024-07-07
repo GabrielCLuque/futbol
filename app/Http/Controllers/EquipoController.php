@@ -35,23 +35,24 @@ class EquipoController extends Controller
     {
         $validatedData = $request->validate([
             'nombre_equipo' => 'required|string|max:30|unique:users',
-            'name' => 'required|string|max:50|unique:users',
+            'username' => 'required|string|max:50|unique:users',
             'email' => 'required|string|email|max:30|unique:users',
             'password' => 'required|string|max:30',
             'fecha_fundacion' => 'nullable|date',
             'direccion' => 'nullable|string',
+            'admin_status'=> 'boolean',
         ]);
     
         $user = new User();
         $user->nombre_equipo = $validatedData['nombre_equipo'];
-        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']); 
         $user->fecha_fundacion = $validatedData['fecha_fundacion'];
         $user->direccion = $validatedData['direccion'];
         $user->puntos = 0; 
         $user->partidos_jugados = 0; 
-
+        $user->admin_status = 0; 
 
         $user->save();
     

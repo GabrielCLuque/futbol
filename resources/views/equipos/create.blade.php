@@ -14,12 +14,12 @@
             @csrf
            <div class=" grid grid-cols-1 gap-4 place-items-center">
                   <div class="form-group ">
-                     <label for="nombre_equipo" class="block mb-2 text-lg font-semibold text-center" >Nombre de Usuario</label>
+                     <label for="nombre_equipo" class="block mb-2 text-lg font-semibold text-center" >Nombre del club</label>
                      <input type="text" name="nombre_equipo" id="nombre_equipo" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
-                     <label for="name" class="block mb-2 text-lg font-semibold text-center">Nombre del club</label>
-                     <input type="text" name="name" id="name" class="form-control w-full p-2 border rounded" required>
+                     <label for="username" class="block mb-2 text-lg font-semibold text-center">Nombre de Usuario</label>
+                     <input type="text" name="username" id="username" class="form-control w-full p-2 border rounded" required>
                   </div>
                   <div class="form-group">
                      <label for="email" class="block mb-2 text-lg font-semibold text-center">Email</label>

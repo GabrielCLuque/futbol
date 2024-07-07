@@ -45,8 +45,9 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Equipos</span>
                 </a>
          </li>
+         <?php if(auth()->guard()->guest()): ?>
          <li>
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="<?php echo e(route('login')); ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
             </svg>
@@ -62,7 +63,30 @@
 
                <span class="flex-1 ms-3 whitespace-nowrap">Registra a tu equipo</span>
             </a>
+         </li> 
+         <?php endif; ?>
+         <?php if(auth()->guard()->check()): ?>
+         <li>
+            <a href="/dashboard/update" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"  width="24">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clip-rule="evenodd" />
+            </svg>
+            
+               <span class="flex-1 ms-3 whitespace-nowrap">Editar Perfil</span>
+            </a>
          </li>
+         <li>
+            <form action="<?php echo e(route('logout')); ?>" method="POST" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <?php echo csrf_field(); ?>
+               <button type="submit" class="flex items-center w-full text-left">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5" width="24">
+                        <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM2.046 15.253c-.058.468.172.92.57 1.175A9.953 9.953 0 0 0 8 18c1.982 0 3.83-.578 5.384-1.573.398-.254.628-.707.57-1.175a6.001 6.001 0 0 0-11.908 0ZM12.75 7.75a.75.75 0 0 0 0 1.5h5.5a.75.75 0 0 0 0-1.5h-5.5Z" />
+                     </svg>
+                     <span class="flex-1 ms-3 whitespace-nowrap">Cerrar sesión</span>
+               </button>
+            </form>
+         </li>
+         <?php endif; ?>
        
       </ul>
    </div>
