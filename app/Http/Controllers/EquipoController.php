@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\equipos;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class EquipoController extends Controller
@@ -29,26 +29,26 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre_usuario' => 'required|string|max:30|unique:equipos',
-            'nombre' => 'required|string|max:50|unique:equipos',
-            'mail' => 'required|string|email|max:30|unique:equipos',
-            'contrasena' => 'required|string|max:30',
+            'nombre_equipo' => 'required|string|max:30|unique:users',
+            'name' => 'required|string|max:50|unique:users',
+            'email' => 'required|string|email|max:30|unique:users',
+            'password' => 'required|string|max:30',
             'fecha_fundacion' => 'nullable|date',
             'direccion' => 'nullable|string',
         ]);
     
-        $equipo = new equipos();
-        $equipo->nombre_usuario = $validatedData['nombre_usuario'];
-        $equipo->nombre = $validatedData['nombre'];
-        $equipo->mail = $validatedData['mail'];
-        $equipo->contrasena = bcrypt($validatedData['contrasena']); 
-        $equipo->fecha_fundacion = $validatedData['fecha_fundacion'];
-        $equipo->direccion = $validatedData['direccion'];
-        $equipo->puntos = 0; 
-        $equipo->partidos_jugados = 0; 
+        $user = new User();
+        $user->nombre_equipo = $validatedData['nombre_equipo'];
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->password = bcrypt($validatedData['password']); 
+        $user->fecha_fundacion = $validatedData['fecha_fundacion'];
+        $user->direccion = $validatedData['direccion'];
+        $user->puntos = 0; 
+        $user->partidos_jugados = 0; 
 
 
-        $equipo->save();
+        $user->save();
     
         return view('home');
     }
