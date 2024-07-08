@@ -62,3 +62,9 @@ Route::get('/partidos/edit/{id}', [PartidoController::class, 'edit'])->name('par
 Route::put('/partidos/update/{id}', [PartidoController::class, 'update'])->name('partidos.update')->middleware('auth');
 
 Route::delete('/partidos/destroy/{id}', [PartidoController::class, 'destroy'])->name('partidos.destroy')->middleware('auth');
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/dashboard/editall', [EquipoController::class, 'adminindex'])->name('dashboard.editall');
+    Route::get('/dashboard/editone/{id}', [EquipoController::class, 'adminedit'])->name('dashboard.editone');
+    Route::put('/dashboard/editone/{id}', [EquipoController::class, 'adminupdatetarget'])->name('dashboard.updatetarget');
+});

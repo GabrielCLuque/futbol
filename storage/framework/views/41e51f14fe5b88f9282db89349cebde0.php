@@ -10,7 +10,7 @@
 <body>
     <div class="container" >
         
-        <form action="/equipo" method="POST">
+        <form action="/equipos" method="POST">
             <?php echo csrf_field(); ?>
            <div class=" grid grid-cols-1 gap-4 place-items-center">
                   <div class="form-group ">
