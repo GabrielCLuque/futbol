@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Partido;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,12 @@ class HomeController extends Controller
                                      ->orderBy('fecha', 'asc')
                                      ->get();
 
-        return view('home', compact('proximosPartidos', 'resultadosPartidos'));
+        $users = User::where('admin_status', '!=', 1)
+                                    ->orderBy('puntos', 'desc')
+                                     ->take(3)
+                                     ->get(['id', 'nombre_equipo', 'puntos', 'partidos_jugados']);
+                
+        return view('home', compact('proximosPartidos', 'resultadosPartidos', 'users'));
     }
+   
 }
