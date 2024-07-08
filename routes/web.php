@@ -54,3 +54,9 @@ Route::post('/partidos', [PartidoController::class, 'store'])->middleware('auth'
 Route::get('/partidos/index', [PartidoController::class, 'show'])->name('partidos.index');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/partidos/all', [PartidoController::class, 'allPartidos'])->name('partidos.all')->middleware('auth');
+
+Route::get('/partidos/edit/{id}', [PartidoController::class, 'edit'])->name('partidos.edit')->middleware('auth');
+
+Route::put('/partidos/update/{id}', [PartidoController::class, 'update'])->name('partidos.update')->middleware('auth');

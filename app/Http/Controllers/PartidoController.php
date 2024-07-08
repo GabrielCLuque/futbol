@@ -46,5 +46,51 @@ class PartidoController extends Controller
 
         return view('partidos.index', ['partidos' => $partidos]);
     }
+    public function allPartidos()
+    {
+        
+        if (Auth::check() && Auth::user()->admin_status == 1) {
+            $partidos = Partido::orderBy('fecha', 'asc')->get(); 
+            return view('partidos.all', ['partidos' => $partidos]);
+        } else {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+    }
+    public function edit($id)
+    {
+        if (Auth::check() && Auth::user()->admin_status == 1) {
+            $partido = Partido::findOrFail($id);
+            $usuarios = User::all(); // Suponiendo que los equipos están en la tabla 'users'
+            return view('partidos.edit', compact('partido', 'usuarios'));
+        } else {
+            return redirect('/')->with('error', 'No autorizado para realizar esta acción.');
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        if (Auth::check() && Auth::user()->admin_status == 1) {
+            $partido = Partido::findOrFail($id);
+    
+            $request->validate([
+                'id_equipo_local' => 'required|integer|exists:users,id',
+                'id_equipo_visitante' => 'required|integer|exists:users,id',
+                'fecha' => 'required|date',
+                'jugado' => 'required|boolean',
+                'resultado' => 'nullable|string',
+            ]);
+    
+            $partido->id_equipo_local = $request->id_equipo_local;
+            $partido->id_equipo_visitante = $request->id_equipo_visitante;
+            $partido->fecha = $request->fecha;
+            $partido->jugado = $request->jugado;
+            $partido->resultado = $request->resultado;
+    
+            $partido->save();
+    
+            return redirect('/')->with('success', 'Partido actualizado correctamente.');
+        } else {
+            return redirect('/')->with('error', 'No autorizado para realizar esta acción.');
+        }
+    }
     
 }

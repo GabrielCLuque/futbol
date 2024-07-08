@@ -92,6 +92,18 @@
                </a>
             <?php endif; ?>
          </li>
+         <li>
+            <?php if(Auth::check() && Auth::user()->admin_status == 1): ?>
+               <a href="<?php echo e(route('partidos.all')); ?>" class="btn btn-info flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5" width="24">
+               <path d="M3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM8.5 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM15.5 8.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
+               </svg>
+
+
+                     <span class="flex-1 ms-3 whitespace-nowrap">Modificar partidos</span>
+               </a>
+            <?php endif; ?>
+         </li>
 </li>
       </ul>
    </div>
