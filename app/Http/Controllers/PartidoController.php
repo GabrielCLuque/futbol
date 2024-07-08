@@ -92,5 +92,15 @@ class PartidoController extends Controller
             return redirect('/')->with('error', 'No autorizado para realizar esta acción.');
         }
     }
-    
+    public function destroy($id)
+{
+    if (Auth::check() && Auth::user()->admin_status == 1) {
+        $partido = Partido::findOrFail($id);
+        $partido->delete();
+
+        return redirect('/partidos/all')->with('success', 'Partido eliminado correctamente.');
+    } else {
+        return redirect('/')->with('error', 'No autorizado para realizar esta acción.');
+    }
+}
 }
