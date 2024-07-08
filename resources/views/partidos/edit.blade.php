@@ -8,23 +8,23 @@
 </head>
 <body>
     <div class="container mx-auto mt-8">
-        <a href="{{ route('partidos.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver a la lista de partidos</a>
+        <a href="{{ route('partidos.all') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver a la lista de partidos</a>
         <form action="{{ route('partidos.update', $partido->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-4">
-                <label for="equipo_local_id" class="block text-sm font-bold mb-2">Equipo Local:</label>
-                <select name="equipo_local_id" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <label for="id_equipo_local" class="block text-sm font-bold mb-2">Equipo Local:</label>
+                <select name="id_equipo_local" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     @foreach($usuarios as $usuario)
-                        <option value="{{ $usuario->id }}" {{ $usuario->id == $partido->equipo_local_id ? 'selected' : '' }}>{{ $usuario->nombre_equipo }}</option>
+                        <option value="{{ $usuario->id }}" {{ $usuario->id == $partido->id_equipo_local ? 'selected' : '' }}>{{ $usuario->nombre_equipo }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-4">
-                <label for="equipo_visitante_id" class="block text-sm font-bold mb-2">Equipo Visitante:</label>
-                <select name="equipo_visitante_id" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <label for="id_equipo_visitante" class="block text-sm font-bold mb-2">Equipo Visitante:</label>
+                <select name="id_equipo_visitante" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     @foreach($usuarios as $usuario)
-                        <option value="{{ $usuario->id }}" {{ $usuario->id == $partido->equipo_visitante_id ? 'selected' : '' }}>{{ $usuario->nombre_equipo }}</option>
+                        <option value="{{ $usuario->id }}" {{ $usuario->id == $partido->id_equipo_visitante ? 'selected' : '' }}>{{ $usuario->nombre_equipo }}</option>
                     @endforeach
                 </select>
             </div>
