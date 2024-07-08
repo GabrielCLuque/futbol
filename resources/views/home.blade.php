@@ -142,19 +142,46 @@
    </div>
       </div>
 
-
-
       <div class="container mx-auto mt-8">
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-         <p class="text-2xl text-gray-400 dark:text-gray-500"> Tabla clasificacion
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+    <div class="text-center mb-4">
+        <p class="text-2xl text-gray-400 dark:text-gray-500">Tabla clasificación
+            <svg class="w-3.5 h-3.5 inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
             </svg>
-         </p>
-      </div>
+        </p>
+    </div>
+    <div class="flex justify-center">
+        <table class="min-w-full bg-white text-center">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 bg-gray-200">Posición</th>
+                    <th class="py-2 px-4 bg-gray-200">Nombre del Equipo</th>
+                    <th class="py-2 px-4 bg-gray-200">Puntos</th>
+                    <th class="py-2 px-4 bg-gray-200">Partidos Jugados</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(isset($users) && $users->count() > 0)
+                    @foreach ($users as $index => $equipo)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                        <td class="border px-4 py-2">{{ $equipo->nombre_equipo }}</td>
+                        <td class="border px-4 py-2">{{ $equipo->puntos }}</td>
+                        <td class="border px-4 py-2">{{ $equipo->partidos_jugados }}</td>
+                    </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td class="border px-4 py-2" colspan="4">No hay datos disponibles</td>
+                    </tr>
+                @endif
+            </tbody>
+               </table>
+            </div>
+         </div>
 
-      </div>
 
+      
 
       <div class="p-4 sm:ml-64">
    

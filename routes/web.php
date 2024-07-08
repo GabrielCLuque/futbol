@@ -68,3 +68,4 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboard/editone/{id}', [EquipoController::class, 'adminedit'])->name('dashboard.editone');
     Route::put('/dashboard/editone/{id}', [EquipoController::class, 'adminupdatetarget'])->name('dashboard.updatetarget');
 });
+
