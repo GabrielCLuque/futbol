@@ -60,3 +60,5 @@ Route::get('/partidos/all', [PartidoController::class, 'allPartidos'])->name('pa
 Route::get('/partidos/edit/{id}', [PartidoController::class, 'edit'])->name('partidos.edit')->middleware('auth');
 
 Route::put('/partidos/update/{id}', [PartidoController::class, 'update'])->name('partidos.update')->middleware('auth');
+
+Route::delete('/partidos/destroy/{id}', [PartidoController::class, 'destroy'])->name('partidos.destroy')->middleware('auth');

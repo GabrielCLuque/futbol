@@ -14,15 +14,23 @@
             @csrf
             <div>
                 <label for="id_equipo_local">Equipo Local:</label>
-                <input type="number" id="id_equipo_local" name="id_equipo_local" required>
+                <select id="id_equipo_local" name="id_equipo_local" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    @foreach($equipos as $equipo)
+                        <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
                 <label for="id_equipo_visitante">Equipo Visitante:</label>
-                <input type="number" id="id_equipo_visitante" name="id_equipo_visitante" required>
+                <select id="id_equipo_visitante" name="id_equipo_visitante" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    @foreach($equipos as $equipo)
+                        <option value="{{ $equipo->id }}">{{ $equipo->nombre_equipo }}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
                 <label for="fecha">Fecha del Partido:</label>
-                <input type="datetime-local" id="fecha" name="fecha" required>
+                <input type="datetime-local" id="fecha" name="fecha" required class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Guardar Partido
