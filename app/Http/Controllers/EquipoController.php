@@ -19,6 +19,16 @@ class EquipoController extends Controller
             'users' => $users
         ]);
     }
+
+    //Index to make posible the editall view
+    public function adminindex()
+    {
+        $users = User::all(['id', 'nombre_equipo', 'username', 'puntos', 'partidos_jugados', 'email', 'fecha_fundacion', 'direccion', 'admin_status']);
+
+        return view('dashboard.editall', [
+            'users' => $users
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -69,40 +79,87 @@ class EquipoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
-{
-    $user = Auth::user();  // Obtener el usuario actual autenticado
-    $userId = $user->id;   // Obtener el ID del usuario
-    return view('dashboard.edit', compact('user', 'userId'));
-}
+        public function edit()
+    {
+        $user = Auth::user();  // Obtener el usuario actual autenticado
+        $userId = $user->id;   // Obtener el ID del usuario
+        return view('dashboard.edit', compact('user', 'userId'));
+    }
+
+    //same as adminindex
+   
+    public function adminedit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('dashboard.editone', compact('user'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
     //still dont works but is close
-    public function update(Request $request, $id)
+        public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $request->validate([
-            'nombre_equipo' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
+
+        $validatedData = $request->validate([
+            'nombre_equipo' => 'required|string|max:30',
+            'email' => 'required|string|email|max:30',
+            'password' => 'required|string|max:30',
             'fecha_fundacion' => 'nullable|date',
-            'direccion' => 'nullable|string|max:255',
+            'direccion' => 'nullable|string',
         ]);
-    
-        $user->nombre_equipo = $request->nombre_equipo;
-        $user->email = $request->email;
-      
-            $user->password = Hash::make($request->password);
-       
-        $user->fecha_fundacion = $request->fecha_fundacion;
-        $user->direccion = $request->direccion;
+
+        
+        if (User::where('nombre_equipo', $validatedData['nombre_equipo'])->where('id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya está en uso por otro usuario.']);
+        }
+
+        
+        if (User::where('email', $validatedData['email'])->where('id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['email' => 'El email ya está en uso por otro usuario.']);
+        }
+
+        $user->nombre_equipo = $validatedData['nombre_equipo'];
+        $user->email = $validatedData['email'];
+        $user->password = bcrypt($validatedData['password']); 
+        $user->fecha_fundacion = $validatedData['fecha_fundacion'];
+        $user->direccion = $validatedData['direccion'];
+
         $user->save();
-    
+
         return redirect('/')->with('success', 'Perfil actualizado correctamente.');
     }
-    
+
+    public function adminupdatetarget(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:30',
+            'nombre_equipo' => 'required|string|max:30',
+            'puntos' => 'required|integer',
+            'partidos_jugados' => 'required|integer',
+            'fecha_fundacion' => 'nullable|date',
+            'direccion' => 'nullable|string',
+        ]);
+        
+        if (User::where('nombre_equipo', $validatedData['nombre_equipo'])->where('id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya está en uso por otro usuario.']);
+        }
+        
+        $user->username = $validatedData['username'];
+        $user->nombre_equipo = $validatedData['nombre_equipo'];
+        $user->puntos = $validatedData['puntos'];
+        $user->partidos_jugados = $validatedData['partidos_jugados'];
+        $user->fecha_fundacion = $validatedData['fecha_fundacion'];
+        $user->direccion = $validatedData['direccion'];
+
+        $user->save();
+
+        return redirect()->route('dashboard.editall')->with('success', 'Usuario actualizado correctamente.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
