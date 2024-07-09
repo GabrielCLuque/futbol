@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container mx-auto mt-8">
-    <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver</a>
+        <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver</a>
         <div class="grid grid-cols-3 gap-4 mb-4 bg-blue-100">
             <?php $__currentLoopData = $partidos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $partido): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="flex flex-col items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800 p-4">
@@ -19,6 +19,10 @@
                         </p>
                         <p class="text-sm text-gray-600 dark:text-gray-400">
                             <?php echo e($partido->fecha->format('d M Y, H:i')); ?>
+
+                        </p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            Resultado: <?php echo e($partido->resultado ?? 'sin resultado'); ?>
 
                         </p>
                     </div>

@@ -57,9 +57,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/partidos/all', [PartidoController::class, 'allPartidos'])->name('partidos.all')->middleware('auth');
 
-Route::get('/partidos/edit/{id}', [PartidoController::class, 'edit'])->name('partidos.edit')->middleware('auth');
+Route::get('partidos/{id}/edit', [PartidoController::class, 'edit'])->name('partidos.edit');
 
-Route::put('/partidos/update/{id}', [PartidoController::class, 'update'])->name('partidos.update')->middleware('auth');
+Route::put('partidos/{id}', [PartidoController::class, 'update'])->name('partidos.update');
 
 Route::delete('/partidos/destroy/{id}', [PartidoController::class, 'destroy'])->name('partidos.destroy')->middleware('auth');
 

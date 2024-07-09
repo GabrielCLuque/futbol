@@ -81,8 +81,8 @@ class EquipoController extends Controller
      */
         public function edit()
     {
-        $user = Auth::user();  // Obtener el usuario actual autenticado
-        $userId = $user->id;   // Obtener el ID del usuario
+        $user = Auth::user(); 
+        $userId = $user->id;  
         return view('dashboard.edit', compact('user', 'userId'));
     }
 
@@ -97,7 +97,7 @@ class EquipoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    //still dont works but is close
+   
         public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -178,8 +178,8 @@ class EquipoController extends Controller
     public function destroyTarget($id)
     {
         if (Auth::user()->admin_status == 1) {
-            $user = User::findOrFail($id); // Asegúrate de que el usuario existe
-            $user->delete(); // Elimina el usuario
+            $user = User::findOrFail($id); 
+            $user->delete(); 
             return redirect('/equipos/index')->with('success', 'Usuario eliminado correctamente.');
         }
         return redirect('/equipos/index')->with('error', 'No tiene permisos para realizar esta acción.');
