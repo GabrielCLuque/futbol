@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .volver-button {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            transition: background-color 0.3s;
+        }
+        .volver-button:hover {
+            background-color: red;
+        }
+    </style>
 </head>
-<body>
-    <div class="container mx-auto mt-8">
-        <h1 class="text-2xl font-bold mb-4">Iniciar Sesión</h1>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="container mx-auto max-w-md bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Iniciar Sesión</h1>
         <form action="<?php echo e(route('login.post')); ?>" method="POST">
             <?php echo csrf_field(); ?>
             <div class="mb-4">
@@ -39,7 +49,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
             </div>
-            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Iniciar</button>
+            <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Iniciar</button>
             <?php if($errors->any()): ?>
                 <div class="mt-4 text-red-500 text-sm">
                     <ul>
@@ -50,6 +60,10 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             <?php endif; ?>
         </form>
+        <div class="flex justify-center mt-4">
+            <a href="/" class="volver-button flex items-center text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver</a>
+        </div>
     </div>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\laravel\futbol\resources\views/auth/login.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\xampp\htdocs\laravel\futbol\resources\views/auth/login.blade.php ENDPATH**/ ?>

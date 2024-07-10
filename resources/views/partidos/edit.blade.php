@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Partido</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        td, th {
+            text-align: center;
+        }
+        .volver-button {
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            transition: background-color 0.3s;
+        }
+        .volver-button:hover {
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="container mx-auto mt-8">
-        <a href="{{ route('partidos.all') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver a la lista de partidos</a>
+         
+    @if ($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('partidos.update', $partido->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -46,6 +68,9 @@
 
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Guardar Cambios</button>
         </form>
+        <div class="flex justify-start mt-4">
+            <a href="{{ route('partidos.all') }}" class="volver-button flex items-center text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver a la lista de partidos</a>
+        </div>
     </div>
 </body>
 </html>
