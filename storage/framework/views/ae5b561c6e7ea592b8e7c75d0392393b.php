@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Próximos Partidos</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        td, th {
+            text-align: center;
+        }
+        .volver-button {
+            padding: 1rem 2rem; 
+            font-size: 1.25rem; 
+            transition: background-color 0.3s;
+        }
+        .volver-button:hover {
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="container mx-auto mt-8">
-        <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver</a>
         <div class="grid grid-cols-3 gap-4 mb-4 bg-blue-100">
             <?php $__currentLoopData = $partidos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $partido): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="flex flex-col items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800 p-4">
@@ -37,7 +49,11 @@
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+        <div class="flex justify-start mt-4">
+            <a href="/" class="volver-button flex items-center text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">Volver</a>
+        </div>
     </div>
 </body>
 </html>
+
 <?php /**PATH C:\xampp\htdocs\laravel\futbol\resources\views/partidos/all.blade.php ENDPATH**/ ?>

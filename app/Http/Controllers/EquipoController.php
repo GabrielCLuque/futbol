@@ -43,15 +43,27 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nombre_equipo' => 'required|string|max:30|unique:users',
-            'username' => 'required|string|max:50|unique:users',
-            'email' => 'required|string|email|max:30|unique:users',
+            'nombre_equipo' => 'required|string|max:30',
+            'username' => 'required|string|max:50',
+            'email' => 'required|string|email|max:30',
             'password' => 'required|string|max:30',
             'fecha_fundacion' => 'nullable|date',
             'direccion' => 'nullable|string',
-            'admin_status'=> 'boolean',
+            'admin_status' => 'boolean',
         ]);
-    
+
+        if (User::where('nombre_equipo', $validatedData['nombre_equipo'])->exists()) {
+            return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya existe.'])->withInput();
+        }
+
+        if (User::where('username', $validatedData['username'])->exists()) {
+            return redirect()->back()->withErrors(['username' => 'El nombre de usuario ya existe.'])->withInput();
+        }
+
+        if (User::where('email', $validatedData['email'])->exists()) {
+            return redirect()->back()->withErrors(['email' => 'El email ya existe.'])->withInput();
+        }
+
         $user = new User();
         $user->nombre_equipo = $validatedData['nombre_equipo'];
         $user->username = $validatedData['username'];
@@ -64,8 +76,8 @@ class EquipoController extends Controller
         $user->admin_status = 0; 
 
         $user->save();
-    
-        return view('home');
+
+        return redirect()->route('login')->with('success', 'Equipo creado exitosamente. Ahora puedes iniciar sesión.');
     }
 
     /**
@@ -114,7 +126,6 @@ class EquipoController extends Controller
         if (User::where('nombre_equipo', $validatedData['nombre_equipo'])->where('id', '!=', $id)->exists()) {
             return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya está en uso por otro usuario.']);
         }
-
         
         if (User::where('email', $validatedData['email'])->where('id', '!=', $id)->exists()) {
             return redirect()->back()->withErrors(['email' => 'El email ya está en uso por otro usuario.']);
@@ -145,6 +156,9 @@ class EquipoController extends Controller
         ]);
         
         if (User::where('nombre_equipo', $validatedData['nombre_equipo'])->where('id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya está en uso por otro usuario.']);
+        }
+        if (User::where('username', $validatedData['nombre_equipo'])->where('id', '!=', $id)->exists()) {
             return redirect()->back()->withErrors(['nombre_equipo' => 'El nombre del equipo ya está en uso por otro usuario.']);
         }
         

@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::get('/equipos/create', [EquipoController::class, 'create']);
 
-Route::post('/equipo', [EquipoController::class, 'store']);
+Route::post('/equipo', [EquipoController::class, 'store'])->name('equipos.store');
 
 Route::get('/equipos/index', [EquipoController::class, 'index']);
 
